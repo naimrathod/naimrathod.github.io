@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naim Rathod | Cybersecurity Portfolio</title>
+    <meta name="description" content="Cybersecurity portfolio - Security Analyst focused on threat detection, incident response, and security operations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050712;
+            --bg-alt: #090b1a;
+            --card: #0d1024;
+            --accent: #3cf5ff;
+            --accent-soft: rgba(60, 245, 255, 0.12);
+            --accent-2: #a855f7;
+            --text: #f9fafb;
+            --muted: #9ca3af;
+            --border: rgba(148, 163, 184, 0.3);
+            --danger: #f97373;
+            --shadow-soft: 0 0 40px rgba(60, 245, 255, 0.15);
+            --radius-xl: 1.5rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #101326 0%, #020309 50%, #000 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.15;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1600 900' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+        }
+
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+            background-size: 38px 38px;
+            opacity: 0.3;
+            mask-image: radial-gradient(circle at top, #000 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.5rem 1.25rem 3rem;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(18px);
+            background: radial-gradient(circle at top, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.65));
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0.8rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: radial-gradient(circle at 30% 0%, rgba(60, 245, 255, 0.8), #020617);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            position: relative;
+            padding-bottom: 0.1rem;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.2rem;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(to right, var(--accent), var(--accent-2));
+            transition: width 0.22s ease;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            background: radial-gradient(circle at top, rgba(60, 245, 255, 0.16), transparent);
+            color: var(--accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            border: none;
+            padding: 0.3rem 0.45rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 720px) {
+            nav ul {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        .mobile-nav {
+            display: none;
+            padding: 0 1.25rem 0.75rem;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .mobile-nav.open {
+            display: block;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+            gap: 2.5rem;
+            align-items: center;
+            margin-top: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.25rem 0.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: rgba(15, 23, 42, 0.92);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 4vw, 3.2rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h1 span.gradient {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            max-width: 40rem;
+            font-size: 0.98rem;
+            color: var(--muted);
+            margin-bottom: 1.6rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .meta-item {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .meta-strong {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.8);
+            background: radial-gradient(circle at top left, var(--accent-soft), #020617);
+            font-size: 0.9rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .btn-primary span.arrow {
+            font-size: 1rem;
+        }
+
+        .btn-ghost {
+            padding: 0.7rem 1.3rem;
+            border-radius: 999px;
+            border: 1px dashed rgba(148, 163, 184, 0.8);
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .hero-card {
+            position: relative;
+            border-radius: var(--radius-xl);
+            padding: 1.2rem;
+            background: radial-gradient(circle at top, rgba(60, 245, 255, 0.12), rgba(15, 23, 42, 0.98));
+            border: 1px solid rgba(148, 163, 184, 0.65);
+            box-shadow: 0 0 40px rgba(15, 23, 42, 0.8);
+            overflow: hidden;
+            min-height: 260px;
+        }
+
+        .hero-card-inner {
+            border-radius: calc(var(--radius-xl) - 0.5rem);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            padding: 1rem;
+            background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.1), rgba(15, 23, 42, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(60, 245, 255, 0.6);
+            background: rgba(8, 47, 73, 0.8);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        .terminal {
+            background: #020617;
+            border-radius: 1rem;
+            padding: 0.75rem 0.9rem;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.78rem;
+            color: var(--accent);
+            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.6rem;
+            color: var(--muted);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .terminal-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.7);
+        }
+
+        .terminal-body {
+            max-height: 130px;
+            overflow: hidden;
+        }
+
+        .terminal-line {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .terminal-line span.prompt {
+            color: var(--accent-2);
+        }
+
+        .terminal-line span.bracket {
+            color: var(--muted);
+        }
+
+        .terminal-line span.value {
+            color: var(--text);
+        }
+
+        .hero-card-glow {
+            position: absolute;
+            inset: -20%;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(60, 245, 255, 0.18), transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.16), transparent 55%);
+            opacity: 0.8;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        section {
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: flex-end;
+            margin-bottom: 1.8rem;
+        }
+
+        .section-title-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .section-kicker {
+            font-size: 0.75rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .section-hint {
+            font-size: 0.8rem;
+            color: var(--muted);
+            max-width: 22rem;
+            text-align: right;
+        }
+
+        @media (max-width: 720px) {
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section-hint {
+                text-align: left;
+            }
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.14), rgba(15, 23, 42, 0.96));
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border);
+            padding: 1.3rem 1.4rem;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+            gap: 1.7rem;
+        }
+
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .about-text {
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .about-text p + p {
+            margin-top: 0.7rem;
+        }
+
+        .about-meta-grid {
+            display: grid;
+            gap: 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        .about-meta-item {
+            padding: 0.7rem 0.8rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: rgba(15, 23, 42, 0.9);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .about-meta-label {
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.7rem;
+        }
+
+        .about-meta-value {
+            font-size: 0.85rem;
+        }
+
+        .tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 0.38rem 0.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: rgba(15, 23, 42, 0.95);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+
+        .tag-pill {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.9);
+        }
+
+        .tag-strong {
+            border-color: rgba(60, 245, 255, 0.8);
+            background: rgba(8, 47, 73, 0.9);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 1.4rem;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .project-card {
+            padding: 1.1rem 1.1rem 1rem;
+            border-radius: 1.3rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.9));
+        }
+
+        .project-title {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-meta {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            font-size: 0.87rem;
+            color: var(--muted);
+            margin-bottom: 0.7rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .project-tag {
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 0.7fr 2.3fr;
+            gap: 1rem;
+            padding: 0.75rem 0.9rem;
+            border-radius: 1.1rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.96);
+        }
+
+        @media (max-width: 720px) {
+            .timeline-item {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .timeline-meta {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .timeline-role {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .timeline-company {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .timeline-bullets {
+            font-size: 0.85rem;
+            color: var(--muted);
+            padding-left: 1rem;
+        }
+
+        .timeline-bullets li + li {
+            margin-top: 0.25rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 0.9rem;
+        }
+
+        .cert-card {
+            border-radius: 1.1rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.95);
+            padding: 0.8rem 0.9rem;
+            font-size: 0.85rem;
+        }
+
+        .cert-title {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .cert-org {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .cert-meta {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+            gap: 1.6rem;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .contact-copy {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .contact-copy p + p {
+            margin-top: 0.6rem;
+        }
+
+        form {
+            display: grid;
+            gap: 0.7rem;
+        }
+
+        label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.55rem 0.7rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            background: rgba(15, 23, 42, 0.96);
+            color: var(--text);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(148, 163, 184, 0.7);
+        }
+
+        .btn-submit {
+            margin-top: 0.4rem;
+            border: none;
+            cursor: pointer;
+            padding: 0.75rem 1.3rem;
+            border-radius: 999px;
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            color: #020617;
+            font-size: 0.86rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .contact-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.9rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .contact-meta-row a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.4);
+            font-size: 0.78rem;
+            color: var(--muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .social-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <header>
+        <div class="nav-inner">
+            <div class="logo">
+                <div class="logo-badge">NR</div>
+                <div class="logo-text">NAIM / Security</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact" class="nav-cta">Open to roles</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span>Menu</span>
+            </button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="#about" onclick="toggleNav()">About</a></li>
+                <li><a href="#skills" onclick="toggleNav()">Skills</a></li>
+                <li><a href="#projects" onclick="toggleNav()">Projects</a></li>
+                <li><a href="#experience" onclick="toggleNav()">Experience</a></li>
+                <li><a href="#contact" onclick="toggleNav()">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="wrapper">
+        <!-- Hero Section -->
+        <section id="top" class="hero">
+            <div>
+                <div class="pill">
+                    <span class="pill-dot"></span>
+                    WAF • VAPT • SIEM
+                </div>
+                <h1>Hi, I'm <span class="gradient">Naim Rathod</span>.<br>I protect organizations from cyber threats.</h1>
+                <p class="hero-subtitle">
+                    Security Analyst with expertise in threat detection, incident response, and security operations. 
+                    I help organizations identify vulnerabilities, respond to incidents, and build robust security defenses.
+                </p>
+                <div class="hero-meta">
+                    <div class="meta-item">
+                        <span class="meta-strong">3+ years</span>
+                        Security experience
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-strong">Purple Team</span>
+                        Red Team & Blue Team
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-strong">Vadodara</span> Open to remote roles
+                    </div>
+                </div>
+                <div class="hero-cta-row">
+                    <a href="#contact" class="btn-primary">
+                        <span>Get in touch</span>
+                        <span class="arrow">↗</span>
+                    </a>
+                    <a href="#projects" class="btn-ghost">View my work</a>
+                </div>
+            </div>
+
+            <aside class="hero-card">
+                <div class="hero-card-glow"></div>
+                <div class="hero-card-inner">
+                    <div class="hero-card-header">
+                        <div>
+                            <div style="font-size: 0.8rem; font-weight: 500;">Security Operations Dashboard</div>
+                            <div style="font-size: 0.78rem; color: var(--muted);">Real-time monitoring snapshot</div>
+                        </div>
+                        <div class="status-pill">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span class="terminal-dot"></span>
+                                <span class="terminal-dot"></span>
+                                <span class="terminal-dot"></span>
+                            </div>
+                            <span>Purple@Team: ~/Attack&Defence</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-line">
+                                <span class="prompt">➜</span>
+                                <span>Running <span class="value">vapt_scan --scope web-apps</span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="bracket">[WAF]</span>
+                                <span>Akamai | Imperva | Cloudflare | AWS WAF: <span class="value">ruleset updated & deployed</span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="bracket">[SIEM]</span>
+                                <span>Akamai WSA + ELK  <span class="value">custom dashboards & alerts online</span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="bracket">[CLOUD]</span>
+                                <span>AWS Inspector / GuardDuty / Detective:  <span class="value">findings triaged</span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="bracket">[DarkWeb Monitoring]</span>
+                                <span>SocRadar + Telegram + Darkweb oninon souces  : <span class="value">no active leak indicators</span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="bracket">[SUMMARY]</span>
+                                <span>incidents today: <span class="value">mitigated with on-call coverage</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="section-kicker">About</div>
+                    <h2 class="section-title">Who I am & how I work</h2>
+                </div>
+                <div class="section-hint">
+                    Passionate about defending against evolving threats through proactive monitoring and incident response.
+                </div>
+            </div>
+            <div class="card about-grid">
+                <div class="about-text">
+                    <p>
+                        As an Associate Security Operations Specialist with a Bachelor’s degree in Computer Applications (BCA) and over two years of hands-on experience, I specialize in securing networks, web applications, and cloud environments across both offensive and defensive security domains..
+                    </p>
+                    <p>
+                        I am a certified eLearnSecurity Junior Penetration Tester (eJPT) with practical experience in penetration testing and vulnerability assessments using tools such as Metasploit, Nmap, Nikto, DirBuster, Wireshark, Acunetix, Nessus, and Burp Suite. My offensive security background allows me to accurately identify real-world attack paths and validate vulnerabilities beyond automated findings..
+                    </p>
+                    <p>
+                        On the defensive side, my work includes Web Application Firewall (WAF) management, log analysis, incident response, root cause analysis, and AWS cloud security. I regularly work with platforms such as Cloudflare, Imperva, Akamai, Fastly, AWS WAF, and cloud-native security services including AWS Inspector, GuardDuty, and Detective, along with SIEM solutions like Akamai WSA and the ELK stack..
+                    </p>
+					
+					<p>  I am a dedicated and driven security professional with a strong interest in ethical hacking, threat detection, and continuous improvement. I enjoy proactive monitoring and threat prevention as much as deep-dive incident investigations, producing clear, actionable reports, and helping teams strengthen their security posture through practical recommendations and security awareness training. I consistently seek to expand my knowledge and stay aligned with the latest cybersecurity threats, tools, and techniques.
+					
+					</p>
+                </div>
+                <div class="about-meta-grid">
+                    <div class="about-meta-item">
+                        <div class="about-meta-label">Current Role</div>
+                        <div class="about-meta-value">Associate Security Operations Specialist @ IDX</div></div>
+                    <div class="about-meta-item">
+                        <div class="about-meta-label">Specialization</div>
+                        <div class="about-meta-value">VAPT, WAF rule management, log analysis, incident response, cloud security</div>
+                    </div>
+                    <div class="about-meta-item">
+                        <div class="about-meta-label">Location</div>
+                        <div class="about-meta-value">Vadodara, Gujarat, India</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="section-kicker">Skills</div>
+                    <h2 class="section-title">Tools & expertise</h2>
+                </div>
+                <div class="section-hint">
+                    Technologies and frameworks I use to detect, analyze, and respond to security threats.
+                </div>
+            </div>
+            <div class="card">
+                <div class="tag-grid">
+                    <span class="tag tag-strong"><span class="tag-pill"></span>SIEM (Splunk, ELK)</span>
+                    <span class="tag tag-strong"><span class="tag-pill"></span>Incident Response</span>
+                    <span class="tag tag-strong"><span class="tag-pill"></span>Threat Hunting</span>
+                    <span class="tag"><span class="tag-pill"></span>Network Security Monitoring</span>
+                    <span class="tag"><span class="tag-pill"></span>Malware Analysis</span>
+                    <span class="tag"><span class="tag-pill"></span>Vulnerability Management</span>
+                    <span class="tag"><span class="tag-pill"></span>EDR (CrowdStrike, Carbon Black)</span>
+                    <span class="tag"><span class="tag-pill"></span>Wireshark</span>
+                    <span class="tag"><span class="tag-pill"></span>Suricata / Snort</span>
+                    <span class="tag"><span class="tag-pill"></span>Zeek (Bro)</span>
+                    <span class="tag"><span class="tag-pill"></span>MITRE ATT&CK</span>
+                    <span class="tag"><span class="tag-pill"></span>Python Scripting</span>
+                    <span class="tag"><span class="tag-pill"></span>PowerShell</span>
+                    <span class="tag"><span class="tag-pill"></span>Log Analysis</span>
+                    <span class="tag"><span class="tag-pill"></span>Threat Intelligence</span>
+                    <span class="tag"><span class="tag-pill"></span>Firewall Management</span>
+                    <span class="tag"><span class="tag-pill"></span>IDS/IPS</span>
+                    <span class="tag"><span class="tag-pill"></span>Cloud Security (AWS/Azure)</span>
+                    <span class="tag"><span class="tag-pill"></span>Security Frameworks (NIST, ISO 27001)</span>
+                    <span class="tag"><span class="tag-pill"></span>Forensics</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="section-kicker">Projects</div>
+                    <h2 class="section-title">Hands-on security work</h2>
+                </div>
+                <div class="section-hint">
+                    A few highlights that reflect the type of problems I solve in security operations, cloud environments and web-facing applications..
+                </div>
+            </div>
+            <div class="grid-2">
+                <article class="project-card">
+                    <div class="project-meta">VAPT • Web Applications</div>
+                    <h3 class="project-title">End-to-end VAPT for Production Web Applications</h3>
+                    <p class="project-desc">
+                       Performed vulnerability assessments and penetration testing on multiple customer web applications using Acunetix, Nessus, Burp Suite, Metasploit and Kali Linux. Documented findings, reduced false positives, and coordinated with development teams to remediate high and critical issues..
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Acunetix</span>
+                        <span class="project-tag">Nessus</span>
+                        <span class="project-tag">Burp Suite</span>
+                        <span class="project-tag">Metasploit</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-meta">Cloud Security • AWS</div>
+                    <h3 class="project-title">AWS Security Posture Hardening with Inspector & GuardDuty</h3>
+                    <p class="project-desc">
+                        Implemented security checks and enhancements across AWS environments using Inspector, GuardDuty and Detective. Triaged findings, proposed remediation plans, and tracked patch management to systematically reduce exposed risk..
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">AWS Inspector</span>
+                        <span class="project-tag">GuardDuty</span>
+                        <span class="project-tag">Detective</span>
+                        <span class="project-tag">AWS WAF Management</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-meta">WAF • Edge Security</div>
+                    <h3 class="project-title">Multi-Vendor WAF Rule Management & POC</h3>
+                    <p class="project-desc">
+                       Administered and optimized rules on Akamai, Imperva, AWS WAF and Fastly, including a detailed proof-of-concept for Fastly’s firewall capabilities. Tuned policies to block malicious traffic while keeping false positives low..
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Akamai</span>
+                        <span class="project-tag">Imperva</span>
+                        <span class="project-tag">Fastly</span>
+                        <span class="project-tag">AWS WAF</span>
+						<span class="project-tag">Cloudflare</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-meta">Threat Intel • SIEM</div>
+                    <h3 class="project-title">Threat Monitoring with SocRadar, Darknet & ELK</h3>
+                    <p class="project-desc">
+                        Monitored Darknet and threat intelligence feeds using SocRadar and Telegram, integrated logs into ELK / Akamai WSA, and built dashboards and alerts to detect suspicious patterns early and support SOC investigations.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">SocRadar</span>
+                        <span class="project-tag">Darknet Monitoring</span>
+                        <span class="project-tag">ELK Stack</span>
+                        <span class="project-tag">Akamai WSA</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="section-kicker">Experience</div>
+                    <h2 class="section-title">Professional journey</h2>
+                </div>
+                <div class="section-hint">
+                    My career path in cybersecurity, from entry-level analyst to specialized security operations.
+                </div>
+            </div>
+            <div class="card timeline">
+                <article class="timeline-item">
+                    <div class="timeline-meta">
+                        <div>Associate Security Operations Specialist</div>
+                        <div>IDX, Vadodara, Gujarat</div>
+                        <div>July 2024 – Present</div>
+                    </div>
+                    <div>
+                        <div class="timeline-role">Security Operations & WAF / Cloud Security</div>
+                        <div class="timeline-company">Security Operations & Engineering</div>
+                        <ul class="timeline-bullets">
+                            <li>Security Monitoring and administration, log analysis, incident
+response using SIEM tools (Akamai WSA, ELK).</li>
+                            <li>Assist the SOC monitoring team for further security incident analysis
+as an escalation point.</li>
+                            <li>Creation of security dashboards, Alerts, and log source integration in
+SIEM tools.</li>
+                            <li>Experience in web application, API, network vulnerability assessments
+and Penetration testing (Acunetix, Nessus, burp suite, Metasploit, kali etc.)</li>
+
+                         <li>Documenting detailed reports and knowledge of patch fixing
+methodologies. </li>
+
+			             <li>Manage Akamai, Imperva, AWS WAF and Symantec, Sophos security
+devices, by implementing the rulesets. </li>
+						
+						<li>Perform security check on AWS cloud platform to improve the security
+measures including the tools like Guard duty, Inspector and Detective.. </li>
+
+						<li>Ownership for training staff on information security procedures and
+information security incident response. </li>
+		
+						<li>Working with the Internal Development Team to fix the findings
+and External Pentesters Team for the Scope management and
+Communications.. </li>
+ 
+						<li>Working with Infra and WAF/ Cloud supplier teams for controls
+related to cloud security, Infrastructure security enhancements,
+reduction of security incidents. </li>
+
+						<li> Work on the different Product POC for the Security Enhancement.</li>
+						
+					<li> Creating the RCA Report for any Outage/ Incidence..</li>
+					
+					<li>Working on Automated tools like Bitsight and Panorays for the overall
+Security Score improvement.</li>
+						
+						<li>Performing the Dark net monitoring with the help of SocRadar and
+Telegram..</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-meta">
+                        <div>Trainee Security Analyst</div>
+                        <div>IDX, Vadodara, Gujarat</div>
+                        <div>September 2023 – July 2024</div>
+                    </div>
+                    <div>
+                        <div class="timeline-role">VAPT, SIEM & Threat Monitoring</div>
+                        <div class="timeline-company">Security Operations & Engineering</div>
+                        <ul class="timeline-bullets">
+                            <li>Conducted detailed assessments and penetration tests on web applications using Acunetix, Nessus, Burp Suite, Metasploit and Kali Linux.</li>
+                            <li>Implemented security checks and improvements across AWS using GuardDuty, Inspector and Detective.</li>
+                            <li>Managed WAF and security devices from Akamai, Imperva, AWS WAF, Fastly and Symantec with robust rule management.</li>
+                            <li>Monitored logs and incidents via SIEM (Akamai WSA and ELK Stack), integrating diverse log sources and creating dashboards and alerts.</li>
+							<li>Used BitSight and Panorays to enhance security scores and drive remediation for third-party risk..</li>
+							<li>Prepared comprehensive security reports, RCAs and supported patch management strategies.</li>
+							<li>Delivered training sessions to educate staff on security protocols and incident response best practices.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certs">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="section-kicker">Education & Certifications</div>
+                    <h2 class="section-title">How I’ve built my foundation</h2>
+                </div>
+                <div class="section-hint">
+                    Industry-recognized certifications validating my security knowledge and skills.
+                </div>
+            </div>
+            <div class="card cert-grid">
+                <article class="cert-card">
+                    <div class="cert-title">Bachelors' in computer Application</div>
+                    <div class="cert-org">Sardar Patel University, Anand</div>
+                    <div class="cert-meta">2020–2023</div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-title">The eLearnSecurity Junior Penetration Tester (eJPT)</div>
+                    <div class="cert-org">INE Security</div>
+                    <div class="cert-meta">June 2023</div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-title">Responsible Red teaming</div>
+                    <div class="cert-org">Taggartinstitute</div>
+                    <div class="cert-meta">2023</div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-title">Bachelor's in Computer Science</div>
+                    <div class="cert-org">University Name</div>
+                    <div class="cert-meta">2016 – 2020</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="section-kicker">Contact</div>
+                    <h2 class="section-title">Let’s talk security</h2>
+                </div>
+                <div class="section-hint">
+                    Open to security analyst / security operations & Purple Team roles, consulting opportunities, and collaboration on cybersecurity projects.
+                </div>
+            </div>
+            <div class="card contact-grid">
+                <div class="contact-copy">
+                    <p>
+                        I'm always interested in connecting with fellow security professionals, discussing the latest 
+                        threats and defensive techniques, or exploring new opportunities in cybersecurity.
+                    </p>
+                    <p>
+                        Whether you have a security role, need consultation, or just want to discuss threat intelligence 
+                        and detection strategies, feel free to reach out through the form or contact me directly.
+                    </p>
+					
+					<p>
+					   privacy is a human right and it belongs to you
+					   </p>
+                    <div class="contact-meta-row">
+                        <div>Email: <a href="mailto:naimrathod@72@gmail.com">naimrathod@72@gmail.com</a></div>
+                        <div>Phone: <a href="tel:+1234567890">+91 7016470332</a></div>
+                    </div>
+                </div>
+                <form action="mailto:your.email@example.com" method="post" enctype="text/plain">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="Name" placeholder="Your name" required>
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="Email" placeholder="you@example.com" required>
+                    </div>
+                    <div>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="Message" placeholder="Tell me about your project or opportunity..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <div>© <span id="year"></span> Your Name. All rights reserved.</div>
+            <div class="social-links">
+                <a href="#top">Back to top ↑</a>
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">Twitter</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        function toggleNav() {
+            mobileNav.classList.toggle('open');
+        }
+
+        mobileBtn.addEventListener('click', toggleNav);
+
+        // Dynamic year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
